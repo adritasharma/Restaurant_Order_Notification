@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log(this.loginForm.value)
     let data = this.loginForm.value;
-debugger
     if (data.username.includes("admin")) {
       this.router.navigate(['admin'])
     } else {

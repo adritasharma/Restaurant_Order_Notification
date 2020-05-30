@@ -10,7 +10,7 @@ namespace Restaurant_Order_Notification.Services
     {
         public List<Order> orders = new List<Order>();
 
-        public bool Add(Order order)
+        public Order Add(Order order)
         {
             int orderId = 0;
 
@@ -24,7 +24,7 @@ namespace Restaurant_Order_Notification.Services
 
             order.OrderId = orderId;
             orders.Add(order);
-            return true;
+            return order;
         }
 
         public IEnumerable<Order> GetAll()

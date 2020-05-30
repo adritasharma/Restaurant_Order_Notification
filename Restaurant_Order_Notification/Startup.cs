@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Restaurant_Order_Notification.Notification;
 using Restaurant_Order_Notification.Services;
+using System;
 
 namespace Restaurant_Order_Notification
 {
@@ -22,6 +25,16 @@ namespace Restaurant_Order_Notification
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSignalR();
+
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
+                builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .WithOrigins("http://localhost:4200");
+            }));
+
 
             services.AddSingleton(typeof(IOrderService), typeof(OrderService));
 
@@ -31,6 +44,7 @@ namespace Restaurant_Order_Notification
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +65,19 @@ namespace Restaurant_Order_Notification
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.UseCors("CorsPolicy");
+
+            // register your hubs here with a url.
+            app.UseSignalR(endpoints =>
+            {
+                endpoints.MapHub<NotificationHub>("/notification");
+            });
+
+            app.UseWebSockets(new WebSocketOptions
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(120),
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -58,18 +85,23 @@ namespace Restaurant_Order_Notification
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
+ 
 
-                spa.Options.SourcePath = "ClientApp";
+  
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+            //app.UseSpa(spa =>
+            //{
+            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+            //    // see https://go.microsoft.com/fwlink/?linkid=864501
+
+            //    spa.Options.SourcePath = "ClientApp";
+
+            //    if (env.IsDevelopment())
+            //    {
+            //        // spa.UseAngularCliServer(npmScript: "start");
+            //        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+            //    }
+            //});
         }
     }
 }

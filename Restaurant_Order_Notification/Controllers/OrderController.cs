@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Restaurant_Order_Notification.Models;
+using Restaurant_Order_Notification.Notification;
 using Restaurant_Order_Notification.Services;
 
 namespace Restaurant_Order_Notification.Controllers
@@ -14,10 +16,13 @@ namespace Restaurant_Order_Notification.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _service;
+        private readonly IHubContext<NotificationHub> _orderNotificationHub;
 
-        public OrderController(IOrderService orderService)
+
+        public OrderController(IOrderService orderService, IHubContext<NotificationHub> orderNotificationHub)
         {
             _service = orderService ?? throw new ArgumentNullException(nameof(orderService));
+            _orderNotificationHub = orderNotificationHub;
         }
         [HttpGet]
         public IActionResult Get()
@@ -27,9 +32,10 @@ namespace Restaurant_Order_Notification.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Order order)
+        public async Task<IActionResult> AddAsync(Order order)
         {
             var res = _service.Add(order);
+            await _orderNotificationHub.Clients.All.SendAsync("NewMessage", 1);
             return Ok(res);
         }
     }

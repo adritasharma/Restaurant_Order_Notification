@@ -8,7 +8,7 @@ namespace Restaurant_Order_Notification.Services
 {
     public interface IOrderService
     {
-        bool Add(Order order);
+        Order Add(Order order);
         IEnumerable<Order> GetAll();
     }
 }

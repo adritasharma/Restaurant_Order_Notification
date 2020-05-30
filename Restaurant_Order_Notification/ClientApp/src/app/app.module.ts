@@ -8,6 +8,7 @@ import { routes } from './app.routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CoreModule } from './_modules/core.module';
 
+
 @NgModule({
    declarations: [
       AppComponent,
