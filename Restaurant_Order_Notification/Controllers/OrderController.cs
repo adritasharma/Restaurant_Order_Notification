@@ -35,7 +35,14 @@ namespace Restaurant_Order_Notification.Controllers
         public async Task<IActionResult> AddAsync(Order order)
         {
             var res = _service.Add(order);
-            await _orderNotificationHub.Clients.All.SendAsync("NewMessage", 1);
+
+
+            //await _orderNotificationHub.Clients.All.SendAsync("NewMessage", 1);
+           // await _orderNotificationHub.Groups.AddToGroupAsync(_orderNotificationHub.)
+
+            await _orderNotificationHub.Clients.Group("admin").SendAsync("NewMessage", 1);
+
+
             return Ok(res);
         }
     }

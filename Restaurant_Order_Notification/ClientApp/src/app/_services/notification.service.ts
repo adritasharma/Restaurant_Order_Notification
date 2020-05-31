@@ -43,6 +43,7 @@ export class NotificationService {
         this.connectionIsEstablished = true;
         console.log('Hub connection started');
         this.connectionEstablished.emit(true);
+        this.joinGroup("admin");
         this.registerOnServerEvents();
 
       })
@@ -50,6 +51,12 @@ export class NotificationService {
         console.log('Error while establishing connection, retrying...');
         setTimeout(function () { this.startConnection(); }, 5000);
       });
+  }
+
+  private joinGroup(group: string): void {
+    if (this._hubConnection) {
+      this._hubConnection.invoke('JoinGroup', group);
+    }
   }
 
   private registerOnServerEvents(): void {

@@ -13,14 +13,14 @@ namespace Restaurant_Order_Notification.Notification
 
         }
 
-        public async void OrderPlace(int orderId)
+        public Task JoinGroup(string groupName)
         {
-            await Clients.All.SendAsync(WebSocketActions.NEW_ORDER_PLACED, orderId);
+            return Groups.AddToGroupAsync(Context.ConnectionId, groupName);
         }
     }
-    public struct WebSocketActions
-    {
-        public static readonly string NEW_ORDER_PLACED = "newOrderPlaced";
-        public static readonly string ORDER_STATUS_CHANGE = "orderStatusChange";
-    }
+    //public struct WebSocketActions
+    //{
+    //    public static readonly string NEW_ORDER_PLACED = "newOrderPlaced";
+    //    public static readonly string ORDER_STATUS_CHANGE = "orderStatusChange";
+    //}
 }

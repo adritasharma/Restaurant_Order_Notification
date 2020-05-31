@@ -73,10 +73,10 @@ namespace Restaurant_Order_Notification
                 endpoints.MapHub<NotificationHub>("/notification");
             });
 
-            app.UseWebSockets(new WebSocketOptions
-            {
-                KeepAliveInterval = TimeSpan.FromSeconds(120),
-            });
+            //app.UseWebSockets(new WebSocketOptions
+            //{
+            //    KeepAliveInterval = TimeSpan.FromSeconds(120),
+            //});
 
             app.UseMvc(routes =>
             {
