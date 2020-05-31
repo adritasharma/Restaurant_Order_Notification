@@ -5,6 +5,7 @@ import { ListOrdersComponent } from './list-orders/list-orders.component';
 import { RouterModule } from '@angular/router';
 import { adminRoutes } from './admin.routing.module';
 import { CoreModule } from '../core.module';
+import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,9 @@ import { CoreModule } from '../core.module';
   ],
   declarations: [
     AdminComponent,
-    ListOrdersComponent]
+    AdminSidebarComponent,
+    ListOrdersComponent
+  ]
 })
 export class AdminModule {
 

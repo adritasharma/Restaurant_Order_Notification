@@ -7,18 +7,20 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CoreModule } from './_modules/core.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
    declarations: [
       AppComponent,
       LoginComponent,
-      NotFoundComponent
+      NotFoundComponent,
+      NavbarComponent
    ],
    imports: [
       BrowserModule,
       CoreModule,
-      RouterModule.forRoot(routes),
+      RouterModule.forRoot(routes)
    ],
    providers: [],
    bootstrap: [
