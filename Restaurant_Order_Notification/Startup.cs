@@ -37,6 +37,7 @@ namespace Restaurant_Order_Notification
 
 
             services.AddSingleton(typeof(IOrderService), typeof(OrderService));
+            services.AddSingleton(typeof(IMenuService), typeof(MenuService));
 
 
             // In production, the Angular files will be served from this directory

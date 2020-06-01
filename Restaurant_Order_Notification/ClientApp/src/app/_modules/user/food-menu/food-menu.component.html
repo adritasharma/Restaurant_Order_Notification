@@ -1,0 +1,28 @@
+<h3 class="theme-color text-center">Menu</h3>
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Menu</th>
+    <th>Quantity</th>
+  </tr>
+  <tr *ngFor="let item of menuList;let i = index">
+    <td>{{item.menuId}}</td>
+    <td>{{item.menuName}}</td>
+    <td>
+      <div class="input-group input-quantity">
+        <span class="input-group-btn">
+          <button type="button" class="quantity-left-minus btn btn-danger btn-number"
+            (click)="quantityClick(i,'remove')" (click)="quantityClick(i,'remove')">
+            <i class="fa fa-minus"></i>
+          </button>
+        </span>
+        <input type="text" id="quantity" class="form-control input-number" [(ngModel)]="item.quantity">
+        <span class="input-group-btn">
+          <button type="button" class="quantity-right-plus btn btn-success btn-number" (click)="quantityClick(i,'add')">
+            <i class="fa fa-plus"></i>
+          </button>
+        </span>
+      </div>
+    </td>
+  </tr>
+</table>
