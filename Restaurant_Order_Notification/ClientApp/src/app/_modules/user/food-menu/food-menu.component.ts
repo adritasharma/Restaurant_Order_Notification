@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/_services/http.service';
 import { environment } from 'src/environments/environment';
+import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
   selector: 'app-food-menu',
@@ -9,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class FoodMenuComponent implements OnInit {
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private _cart:CartService) { }
 
   menuList = []
 
@@ -28,19 +29,21 @@ export class FoodMenuComponent implements OnInit {
     })
   }
 
-  quantityClick(index, type) {
+  quantityChange(item, type) {
 
-    let quantity = this.menuList[index].quantity ? Number(this.menuList[index].quantity) : 0
+    let quantity = item.quantity ? Number(item.quantity) : 0
 
     if (type == 'add') {
       quantity = quantity + 1
-    } else {
+    } else if (type == 'remove'){
       if (quantity > 0) {
         quantity = quantity - 1
       }
     }
 
-    this.menuList[index].quantity = quantity
+    item.quantity = quantity
+
+     this._cart.changeCart(item,type)
 
   }
 

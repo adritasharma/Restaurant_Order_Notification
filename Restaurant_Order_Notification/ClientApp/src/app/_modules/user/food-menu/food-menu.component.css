@@ -1,6 +1,23 @@
-.input-quantity{
-    width: 120px;
+.input-quantity {
+    width: 135px;
+    border: 1px solid silver;
+    color: #a7001a;
+    border-radius: 12px;
+    text-align: center;
 }
-.btn-number, .input-number {
-    height: 30px;
+
+.quantity-display {
+    background-color: #eeeeee;
+}
+
+.quantity-minus{
+    padding-left: 27px;
+}
+
+.quantity-plus{
+    padding-right: 27px;
+}
+.disabled{
+    pointer-events: none;
+    color: #f392a0
 }
