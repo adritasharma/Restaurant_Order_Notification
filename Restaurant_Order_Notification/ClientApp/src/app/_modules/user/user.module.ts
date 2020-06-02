@@ -5,6 +5,7 @@ import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { CoreModule } from '../core.module';
 import { customerRoutes } from './user.routing.module';
 import { RouterModule } from '@angular/router';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   imports: [
@@ -12,8 +13,10 @@ import { RouterModule } from '@angular/router';
     CoreModule,
     RouterModule.forChild(customerRoutes),
   ],
-  declarations: [UserComponent,
-    FoodMenuComponent
+  declarations: [
+    UserComponent,
+    FoodMenuComponent,
+    CheckoutComponent
   ]
 })
 export class UserModule { }

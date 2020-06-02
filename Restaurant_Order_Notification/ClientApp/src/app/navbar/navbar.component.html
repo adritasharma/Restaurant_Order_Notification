@@ -15,8 +15,13 @@
           </li>
         </ul>
         <ul class="navbar-nav flex-grow">
-          <li class="nav-item" (click)="goToCart()">
-            <a class="nav-link text-light" [routerLink]='["/"]'><i class="fa fa-shopping-cart"></i> Your Order <span>{{cartCount}}</span></a>
+          <li class="nav-item" >
+            <a class="nav-link text-light" [routerLink]='["user/checkout"]'><i class="fa fa-shopping-cart"></i> Your Order <span *ngIf="cartCount>0">({{cartCount}})</span></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item" >
+            <a class="nav-link text-light" [routerLink]='["user/menu"]'><i class="fa fa-heart"></i> Menu</a>
           </li>
         </ul>
       </div>

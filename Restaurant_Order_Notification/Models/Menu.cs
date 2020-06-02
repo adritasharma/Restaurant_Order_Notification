@@ -9,6 +9,7 @@ namespace Restaurant_Order_Notification.Models
     {
         public int MenuId { get; set; }
         public string MenuName { get; set; }
+        public decimal Price { get; set; }
 
     }
 }

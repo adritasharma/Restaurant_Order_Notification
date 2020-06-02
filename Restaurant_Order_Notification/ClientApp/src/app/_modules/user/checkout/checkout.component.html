@@ -1,0 +1,38 @@
+<h3 class="theme-color text-center">Checkout</h3>
+<table class="table table-bordered col-7 mx-auto">
+  <thead class="text-center">
+    <tr>
+      <th>#</th>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Sub Total</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let item of orders;let i = index">
+    <td class="text-center">{{i + 1}}</td>
+    <td>{{item.menuName}}</td>
+    <td class="text-center">
+      <div class="input-quantity">
+        <div class="row">
+          <div class="col-4 quantity-minus" (click)="_cart.changeCart(item,'remove')"
+            [class.disabled]="item.quantity < 1"> <i class="fa fa-minus"></i></div>
+          <div class="col-4 quantity-display">{{item.quantity}}</div>
+          <div class="col-4 quantity-plus" (click)="_cart.changeCart(item,'add')"> <i class="fa fa-plus"></i></div>
+        </div>
+      </div>
+    </td>
+    <td class="text-right"><i class="fa fa-rupee"></i> {{item.price}}</td>
+    <td class="text-right"><i class="fa fa-rupee"></i> {{item.subTotal}}</td>
+  </tr>
+  <tr *ngIf="orders.length>0">
+    <td colspan="3" class="no-border"></td>
+    <th class="text-center left-border">Total</th>
+    <th class="text-right"><i class="fa fa-rupee"></i> {{cartTotal}}</th>
+  </tr>
+  <tr *ngIf="orders.length>0">
+    <td colspan="4" class="no-border"></td>
+    <td class="no-border text-right" style="padding-right: 0;"> <button class="btn btn-success">Place Order</button>
+    </td>
+  </tr>
+</table>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/_services/http.service';
 import { environment } from 'src/environments/environment';
 import { CartService } from 'src/app/_services/cart.service';
+import { IMenu } from 'src/app/_models/Menu';
 
 @Component({
   selector: 'app-food-menu',
@@ -12,7 +13,7 @@ export class FoodMenuComponent implements OnInit {
 
   constructor(private http: HttpService, private _cart:CartService) { }
 
-  menuList = []
+  menuList:IMenu[] = []
 
   ngOnInit() {
 
@@ -29,23 +30,6 @@ export class FoodMenuComponent implements OnInit {
     })
   }
 
-  quantityChange(item, type) {
-
-    let quantity = item.quantity ? Number(item.quantity) : 0
-
-    if (type == 'add') {
-      quantity = quantity + 1
-    } else if (type == 'remove'){
-      if (quantity > 0) {
-        quantity = quantity - 1
-      }
-    }
-
-    item.quantity = quantity
-
-     this._cart.changeCart(item,type)
-
-  }
 
 
 }

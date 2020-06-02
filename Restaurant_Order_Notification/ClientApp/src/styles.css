@@ -1,17 +1,53 @@
 .container {
     max-width: 100% !important;
 }
+
 .theme-background {
     background-color: #a7001a !important;
 }
-.theme-background> .nav-link {
+
+.theme-background>.nav-link {
     color: #fff;
 }
+
 .theme-color {
     color: #a7001a;
 }
+
 .btn-default {
     color: #fff !important;
     background-color: #a7001a !important;
 }
 
+.input-quantity {
+    width: 135px;
+    border: 1px solid silver;
+    color: #a7001a;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.quantity-display {
+    background-color: #eeeeee;
+}
+
+.quantity-minus {
+    padding-left: 27px;
+}
+
+.quantity-plus {
+    padding-right: 27px;
+}
+
+.disabled {
+    pointer-events: none;
+    color: #f392a0
+}
+
+.no-border {
+    border: 1px solid #fff !important;
+}
+
+.left-border {
+    border-left: 2px solid #dee2e6 !important;
+}

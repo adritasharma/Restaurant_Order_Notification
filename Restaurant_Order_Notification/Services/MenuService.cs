@@ -12,11 +12,11 @@ namespace Restaurant_Order_Notification.Services
 
         public MenuService()
         {
-            menus.Add(new Menu { MenuId = 1, MenuName="Chicken Pizza" });
-            menus.Add(new Menu { MenuId = 2, MenuName = "Paneer Pizza" });
-            menus.Add(new Menu { MenuId = 3, MenuName = "Onion capsicum Pizza" });
-            menus.Add(new Menu { MenuId = 4, MenuName = "Double Cheese Pizza" });
-            menus.Add(new Menu { MenuId = 5, MenuName = "Mushroom Pizza" });
+            menus.Add(new Menu { MenuId = 1, MenuName="Chicken Pizza" , Price = 150 });
+            menus.Add(new Menu { MenuId = 2, MenuName = "Paneer Pizza", Price = 140 });
+            menus.Add(new Menu { MenuId = 3, MenuName = "Onion capsicum Pizza", Price = 100 });
+            menus.Add(new Menu { MenuId = 4, MenuName = "Double Cheese Pizza", Price = 130 });
+            menus.Add(new Menu { MenuId = 5, MenuName = "Mushroom Pizza", Price = 120 });
         }
 
         public Menu Add(Menu menu)
