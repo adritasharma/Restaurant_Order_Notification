@@ -40,10 +40,11 @@ namespace Restaurant_Order_Notification.Controllers
             //await _orderNotificationHub.Clients.All.SendAsync("NewMessage", 1);
            // await _orderNotificationHub.Groups.AddToGroupAsync(_orderNotificationHub.)
 
-            await _orderNotificationHub.Clients.Group("admin").SendAsync("NewMessage", 1);
+            await _orderNotificationHub.Clients.Group("admin").SendAsync("NewMessage", $"New Order Placed by CustomerId  {order.CustomerId}");
 
 
             return Ok(res);
         }
+       
     }
 }

@@ -32,7 +32,7 @@
   </tr>
   <tr *ngIf="orders.length>0">
     <td colspan="4" class="no-border"></td>
-    <td class="no-border text-right" style="padding-right: 0;"> <button class="btn btn-success">Place Order</button>
+    <td class="no-border text-right" style="padding-right: 0;"> <button class="btn btn-success" (click)="placeOrder()">Place Order</button>
     </td>
   </tr>
 </table>
