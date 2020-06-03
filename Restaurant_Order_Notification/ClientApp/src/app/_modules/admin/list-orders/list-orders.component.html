@@ -2,14 +2,17 @@
 <table class="table table-bordered">
   <tr>
     <th>Order #</th>
-    <th>Dish</th>
-    <th>Quantity</th>
+    <th>Dish & Quantity</th>
     <th>Status</th>
   </tr>
   <tr *ngFor="let item of orderList">
     <td>{{item.orderId}}</td>
-    <td>{{item.dishName}}</td>
-    <td>{{item.quantity}}</td>
+    <td>
+      <span *ngFor="let menu of item.orderItems; let j=index"> {{menu.menuName}} ({{menu.quantity}})
+        <span *ngIf="j != item.orderItems.length -1"> ,</span>
+      </span>
+
+    </td>
     <td>{{item.status}}</td>
   </tr>
 </table>

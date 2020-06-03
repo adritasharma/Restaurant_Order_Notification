@@ -16,6 +16,7 @@ namespace Restaurant_Order_Notification.Models
     public class OrderItems
     {
         public int MenuId { get; set; }
+        public string MenuName { get; set; }
         public int Quantity { get; set; }
     }
 

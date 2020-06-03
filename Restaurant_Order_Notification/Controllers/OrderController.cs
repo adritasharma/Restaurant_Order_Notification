@@ -34,6 +34,7 @@ namespace Restaurant_Order_Notification.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync(Order order)
         {
+            order.OrderStatus = 0;
             var res = _service.Add(order);
 
 
